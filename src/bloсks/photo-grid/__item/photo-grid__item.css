@@ -1,0 +1,12 @@
+.photo-grid__item {
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* интересно смотрится
+.photo-grid__item:hover {
+  transform: scale(1.05);
+}
+ */

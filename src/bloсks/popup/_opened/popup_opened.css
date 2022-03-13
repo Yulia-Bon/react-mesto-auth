@@ -1,0 +1,6 @@
+.popup_opened {
+    /* При добавлении класса 'active'*/
+    opacity: 1; /* Показываем фон и попап*/
+    transition: 0.5s all;
+    visibility: visible;
+  }

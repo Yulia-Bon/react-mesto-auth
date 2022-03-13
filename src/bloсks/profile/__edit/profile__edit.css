@@ -1,0 +1,27 @@
+.profile__edit {
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  transition: opacity 0.3s ease-in-out;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  background: #000 url("../../../images/pen.svg") center no-repeat;
+  font-size: 0; /* Скрыть */
+  cursor: pointer;
+  align-self: end;
+  margin-bottom: 7px;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__edit {
+    width: 17px;
+    height: 17px;
+    margin-bottom: 6px;
+  }
+}
+
+.profile__edit:hover {
+  opacity: 0.6;
+}
