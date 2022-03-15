@@ -13,9 +13,10 @@
 
 @import url(./bloсks/auth/auth.css);
 @import url(./bloсks/header/__email/header__email.css);
-@import url(./bloсks/header/__naw/header__nav.css);
-@import url(./bloсks/header/__link/_color/header__link_color_grey.css);
 
+@import url(./bloсks/header/__link/_color/header__link_color_grey.css);
+@import url(./bloсks/header/__link/header__link.css);
+@import url(./bloсks/header/__naw/header__nav.css);
 
 
 
@@ -59,3 +60,12 @@
 @import url(./bloсks/popup/__button-check/popup__button-check.css);
 @import url(./bloсks/photo-grid/__like-numbers/photo-grid__like-numbers.css);
 
+
+
+@import url(./bloсks/auth/__button/auth__button.css);
+@import url(./bloсks/auth/__form/auth__form.css);
+@import url(./bloсks/auth/__input/auth__input.css);
+@import url(./bloсks/auth/__link/auth__link.css);
+@import url(./bloсks/auth/__text/auth__text.css);
+@import url(./bloсks/auth/__title/auth__title.css);
+@import url(./bloсks/auth/__button/auth__button.css);

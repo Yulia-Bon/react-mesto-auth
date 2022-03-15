@@ -7,13 +7,13 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
-
+import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
 import { BrowserRouter } from 'react-router-dom';
 
 
 import api from "../utils/Api";
-import {CurrentUserContext} from "../contexts/CurrentUserContext";
+
 
 import { Route, Switch, useHistory, Link } from "react-router-dom";
 
@@ -74,6 +74,24 @@ function App() {
         setRegister(boolean);
         setIsInfoTooltipOpen(true);
     }
+
+
+
+    function handleDeletePopupClick(card) {
+        setDeletedCard(card);
+        setIsConfirmationPopupOpen(true);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     function closeAllPopups() {
@@ -189,10 +207,22 @@ function App() {
     }
 
 
+
+
+
+
     function signOut() {
-        localStorage.removeItem('token');
-        history.push('/sign-in')
+        history.push("/sign-in");
+        setEmail("");
+        setLoggedIn(false);
+        localStorage.removeItem("token");
     }
+
+
+
+
+
+
     React.useEffect(() => {
         const closeByEscape = (e) => {
             if (e.key === "Escape") {
@@ -212,7 +242,7 @@ function App() {
     function handleLogin() {
         setLoggedIn(true);
     }
-    function handleRegisterSubmit(password, email) {
+    function handleRegisterSubmit(password,email ) {
         auth.register(password, email)
             .then((res) => {
                 if (res.data) {
@@ -256,12 +286,7 @@ function App() {
                 });
         }
     }
-    function signOut() {
-        history.push("/sign-in");
-        setEmail("");
-        setLoggedIn(false);
-        localStorage.removeItem("token");
-    }
+
 
     React.useEffect(() => {
         Promise.all([api.getInitialCards(), api.getProfileInfo()])
@@ -286,7 +311,7 @@ function App() {
                     <Header>
                         <Link className="header__link" to="/sign-in">Войти</Link>
                     </Header>
-                       <Register handleInfoTooltipOpen={handleInfoTooltipOpen}/>
+                       <Register handleRegisterSubmit={handleRegisterSubmit}/>
                 </Route>
                 <Route path="/sign-in">
                     <Header>
@@ -294,6 +319,7 @@ function App() {
                     </Header>
 
                     <Login handleLogin={handleLogin} handleInfoTooltipOpen={handleInfoTooltipOpen}/>
+                    <Login handleLoginSubmit={handleLoginSubmit} />
                 </Route>
                 <ProtectedRoute path="/"
                                 component={Main}
@@ -307,8 +333,13 @@ function App() {
                                 onCardDeleteClick={handleDeletePopupClick}>
                     <Header>
                         <p className="header__email">{email}</p>
-                        <Link className="header__link header__link_color_grey" to="/sign-in"
-                              onClick={signOut}>Выйти</Link>
+                        <Link
+                            className="header__link header__link_color_grey"
+                            to="/sign-in"
+                            onClick={signOut}
+                        >
+                            Выйти
+                        </Link>
                     </Header>
                 </ProtectedRoute>
             </Switch>
