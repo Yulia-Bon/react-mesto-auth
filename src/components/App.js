@@ -267,7 +267,7 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
 
             <div className="pages">
-                <Header onClick={onSingOut} email={email}/>
+                <Header handleLogOut={onSingOut} email={email}/>
                 <Switch>
                     <Route path="/sign-up">
                         <Register handleRegisterSubmit={handleRegisterSubmit}/>
