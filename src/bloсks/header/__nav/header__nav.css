@@ -1,24 +1,22 @@
 .header__nav {
-  font-family: 'Inter', Arial, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #FFFFFF;
-  text-decoration: unset;
-  transition: opacity .3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column-gap: 48px;
+  -webkit-column-gap: 48px;
+  column-gap: 48px;
 }
 
-.header__nav:hover {
-  opacity: .6;
-}
-
-.header__navlink:focus {
-  opacity: .6;
-}
-
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 600px) {
   .header__nav {
     font-size: 18px;
+    justify-content:stretch;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .header__nav {
+    display: grid;
+    justify-content:stretch;
   }
 }

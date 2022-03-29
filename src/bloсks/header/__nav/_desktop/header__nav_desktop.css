@@ -1,0 +1,14 @@
+.header__nav_desktop {
+    display: flex;
+    grid-column-gap: 24px;
+    -webkit-column-gap: 24px;
+    column-gap: 24px;
+    align-items: baseline;
+}
+
+@media screen and (max-width: 600px) {
+    .header__nav_desktop {
+        display: grid;
+        font-size: 12px;
+    }
+}

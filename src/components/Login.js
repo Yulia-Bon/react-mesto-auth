@@ -8,9 +8,11 @@ function Login(props) {
     function handleChangeEmail(e) {
         setEmail(e.target.value);
     }
+
     function handleChangePassword(e) {
         setPassword(e.target.value);
     }
+
     function handleSubmit(e) {
         e.preventDefault();
         if (!email || !password) {
@@ -18,6 +20,7 @@ function Login(props) {
         }
         props.handleLoginSubmit(password, email);
     }
+
     return (
         <AuthForm
             title="Вход"

@@ -1,0 +1,8 @@
+.header__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column-gap: 48px;
+    -webkit-column-gap: 48px;
+    column-gap: 48px;
+}

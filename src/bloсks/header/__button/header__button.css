@@ -3,11 +3,16 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 1.22;
-  color: #A9A9A9;
+  line-height: 22px;
+  color: #ffffff;
   background: unset;
   border: unset;
   cursor: pointer;
   padding: 0;
   margin: 9px 0;
+  text-decoration: none;
+}
+
+.header__button:hover {
+  opacity: .6;
 }

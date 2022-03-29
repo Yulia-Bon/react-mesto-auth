@@ -9,14 +9,9 @@ import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-
-
-
 import api from "../utils/Api";
 
-
-import { Route, Switch, useHistory, Link } from "react-router-dom";
-
+import {Route, Switch, useHistory} from "react-router-dom";
 
 import Register from './Register';
 import Login from './Login';
@@ -35,7 +30,6 @@ function App() {
 
     const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
 
-
     const [cards, setCards] = React.useState([]);
     const [selectedCard, setSelectedCard] = React.useState({name: '', link: ''});
     const [deletedCard, setDeletedCard] = React.useState({});
@@ -43,14 +37,13 @@ function App() {
 
     const [isLoading, setIsLoading] = React.useState(false);
 
-
     const history = useHistory();
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [email, setEmail] = React.useState('');
     const [register, setRegister] = React.useState(false);
 
-    /**Обработка попапов*/
 
+    /**Обработка попапов*/
 
     function handleCardClick(card) {
         setSelectedCard(card);
@@ -74,20 +67,6 @@ function App() {
         setRegister(boolean);
         setIsInfoTooltipOpen(true);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     function closeAllPopups() {
@@ -192,22 +171,6 @@ function App() {
     }
 
 
-
-
-
-
-    function signOut() {
-        history.push("/sign-in");
-        setEmail("");
-        setLoggedIn(false);
-        localStorage.removeItem("token");
-    }
-
-
-
-
-
-
     React.useEffect(() => {
         const closeByEscape = (e) => {
             if (e.key === "Escape") {
@@ -223,11 +186,12 @@ function App() {
         setIsConfirmationPopupOpen(true);
     }
 
-    /** Авторизация */
+    /* Авторизация */
     function handleLogin() {
         setLoggedIn(true);
     }
-    function handleRegisterSubmit(password,email ) {
+
+    function handleRegisterSubmit(password, email) {
         auth.register(password, email)
             .then((res) => {
                 if (res.data) {
@@ -240,6 +204,7 @@ function App() {
                 console.log(err.message);
             });
     }
+
     function handleLoginSubmit(password, email) {
         auth
             .authorize(password, email)
@@ -254,6 +219,7 @@ function App() {
                 console.log(err);
             });
     }
+
     function handleTokenCheck() {
         if (localStorage.getItem("token")) {
             const token = localStorage.getItem("token");
@@ -273,16 +239,6 @@ function App() {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     React.useEffect(() => {
         Promise.all([api.getInitialCards(), api.getProfileInfo()])
             .then((res) => {
@@ -298,22 +254,12 @@ function App() {
     }, [loggedIn]);
 
 
-
-
-
-
-
-
-
-
     function onSingOut() {
-        localStorage.removeItem("usersToken");
-        setEmail(undefined);
+        localStorage.removeItem('token');
+        setEmail('');
         setLoggedIn(false);
         history.push("/sign-in");
     }
-
-
 
 
     return (
@@ -321,7 +267,7 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
 
             <div className="pages">
-                <Header onSingOut={onSingOut} email={email} />
+                <Header onClick={onSingOut} email={email}/>
                 <Switch>
                     <Route path="/sign-up">
                         <Register handleRegisterSubmit={handleRegisterSubmit}/>
