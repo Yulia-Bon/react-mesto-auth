@@ -34,6 +34,7 @@ function Card(props) {
                 </div>
             </div>
         </li>
+
     )
 }
 

@@ -1,16 +1,9 @@
 import React from "react";
-import * as auth from '../utils/auth.js';
-import {useHistory} from "react-router-dom";
+import AuthForm from "./AuthForm";
 
 function Login(props) {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-
-
-
-    const history = useHistory();
-
-
 
     function handleChangeEmail(e) {
         setEmail(e.target.value);
@@ -23,28 +16,19 @@ function Login(props) {
         if (!email || !password) {
             return;
         }
-        auth.authorize(password, email)
-            .then((res) => {
-                if(res.token){
-                    props.handleLogin();
-                    history.push('/')
-                }
-            })
-            .catch(err => {
-                props.handleInfoTooltipOpen(false);
-                console.log(err);
-            });
+        props.handleLoginSubmit(password, email);
     }
-    return(
-        <div className="auth">
-            <form className="auth__form" onSubmit={handleSubmit}>
-                <h2 className="auth__title">Вход</h2>
-                <input className="auth__input"  name="email" type="email" placeholder="Email" onChange={handleChangeEmail} value={email|| ''}/>
-                <input className="auth__input" name="password" type="password" placeholder="Пароль" onChange={handleChangePassword} value={password || ''}/>
-                <button  className="auth__button" onSubmit={handleSubmit}>Войти</button>
-            </form>
-        </div>
-    )
+    return (
+        <AuthForm
+            title="Вход"
+            buttonText="Войти"
+            email={email}
+            password={password}
+            handleChangeEmail={handleChangeEmail}
+            handleChangePassword={handleChangePassword}
+            handleSubmit={handleSubmit}
+        />
+    );
 }
-export default Login;
 
+export default Login;

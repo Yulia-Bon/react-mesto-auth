@@ -9,16 +9,16 @@ function Main(props) {
     return (
         <main>
             <section className="profile">
-                <div className="profile__edit-avatar" onClick={props.onEditAvatar}></div>
+                <div className="profile__edit-avatar" onClick={props.onEditAvatar}/>
                 <img className="profile__avatar" alt="Аватар" src={currentUser.avatar}/>
                 <div className="profile__info">
                     <h1 className="profile__name">{currentUser.name}</h1>
                     <p className="profile__job">{currentUser.about}</p>
                     <button className="profile__edit" type="button" aria-label="кнопка изменения профиля"
-                            onClick={props.onEditProfile}></button>
+    onClick={props.onEditProfile}/>
                 </div>
                 <button className="profile__add-button" type="button" aria-label="добавить фото"
-                        onClick={props.onAddPlace}></button>
+    onClick={props.onAddPlace}/>
             </section>
 
             <section className="places">
