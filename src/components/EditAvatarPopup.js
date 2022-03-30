@@ -12,9 +12,6 @@ function EditAvatarPopup(props) {
         resetForm
     } = useFormWithValidation({});
 
-
-    //const avatarRef = React.useRef();
-
     React.useEffect(() => {
         resetForm();
     }, [props.isOpen, resetForm])

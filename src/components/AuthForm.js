@@ -10,7 +10,7 @@ function AuthForm(props) {
             >
                 <h2 className="auth__title">{props.title}</h2>
                 <input
-                    className="auth__input"
+                    className=" auth__input_theme_dark auth__input"
                     name="email"
                     type="email"
                     placeholder="Email"
@@ -20,7 +20,7 @@ function AuthForm(props) {
                     required
                 />
                 <input
-                    className="auth__input"
+                    className="auth__input_theme_dark auth__input"
                     name="password"
                     type="password"
                     placeholder="Пароль"

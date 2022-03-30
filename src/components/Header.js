@@ -2,12 +2,10 @@ import React from 'react';
 import {Link, Route} from "react-router-dom";
 import headerLogo from "../images/logo_w.svg";
 
-
 function Header({handleLogOut = null, email}) {
 
     return (
         <header className='header'>
-
             <div
                 className="header__nav"
             >
@@ -21,7 +19,6 @@ function Header({handleLogOut = null, email}) {
                         className="header__logo"
                     />
                 </Link>
-
 
                 <Route path="/sign-in">
                     <Link

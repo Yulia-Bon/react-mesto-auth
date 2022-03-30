@@ -19,7 +19,6 @@ import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth.js';
 
-
 function App() {
 
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -62,12 +61,10 @@ function App() {
         setIsAddPlacePopupOpen(true);
     }
 
-
     function handleInfoTooltipOpen(boolean) {
         setRegister(boolean);
         setIsInfoTooltipOpen(true);
     }
-
 
     function closeAllPopups() {
         setIsInfoTooltipOpen(false);
@@ -78,7 +75,6 @@ function App() {
         setIsAddPlacePopupOpen(false);
         setIsConfirmationPopupOpen(false);
     }
-
 
     /* Обработка событий */
     function handleCardLike(card) {
@@ -170,7 +166,6 @@ function App() {
         }
     }
 
-
     React.useEffect(() => {
         const closeByEscape = (e) => {
             if (e.key === "Escape") {
@@ -221,8 +216,8 @@ function App() {
     }
 
     function handleTokenCheck() {
+        const token = localStorage.getItem("token");
         if (localStorage.getItem("token")) {
-            const token = localStorage.getItem("token");
             auth
                 .getContent(token)
                 .then((res) => {
@@ -237,9 +232,12 @@ function App() {
                 });
         }
     }
-
-
     React.useEffect(() => {
+        handleTokenCheck();
+    }, [loggedIn]);
+
+    React.useEffect(() =>{
+        if(setLoggedIn){
         Promise.all([api.getInitialCards(), api.getProfileInfo()])
             .then((res) => {
                 setCards(res[0]);
@@ -248,11 +246,7 @@ function App() {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
-    React.useEffect(() => {
-        handleTokenCheck();
-    }, [loggedIn]);
-
+    }}, []);
 
     function onSingOut() {
         localStorage.removeItem('token');
@@ -260,7 +254,6 @@ function App() {
         setLoggedIn(false);
         history.push("/sign-in");
     }
-
 
     return (
 
@@ -290,7 +283,6 @@ function App() {
                     </ProtectedRoute>
                 </Switch>
 
-
                 <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen}
                                   onUpdateUser={handleUpdateUser} isLoading={isLoading}
                                   handleOverlayClose={handleOverlayClose}/>
@@ -311,10 +303,8 @@ function App() {
                              register={register}/>
                 <Footer/>
 
-
             </div>
         </CurrentUserContext.Provider>
-
     );
 }
 
