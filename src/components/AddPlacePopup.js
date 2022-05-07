@@ -1,6 +1,6 @@
 import React from 'react';
-import PopupWithForm from '../../../react-mesto-auth/src/components/PopupWithForm';
-import {useFormWithValidation} from '../../../react-mesto-auth/src/hooks/useFormWithValidation.js';
+import PopupWithForm from '../../src/components/PopupWithForm';
+import {useFormWithValidation} from '../../src/hooks/useFormWithValidation.js';
 
 function AddPlacePopup(props) {
 
