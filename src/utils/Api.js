@@ -80,9 +80,9 @@ export class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-34',
+    baseUrl: 'https://mesto-express.ybon.nomoredomains.work',
     headers: {
-        authorization: 'df21cdb1-cdd7-4792-acbf-9af5bc5a6190',
+        authorization: '${localStorage.getItem(\'jwt\')}',
         'Content-Type': 'application/json'
     }
 });

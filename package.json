@@ -2,7 +2,7 @@
   "name": "mesto-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yulia-bon.github.io/mesto-react-auth",
+  "homepage": "http://mesto-react.ybon.nomoredomains.work/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
