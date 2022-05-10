@@ -14,7 +14,7 @@ export class Api {
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
-        }).then((res) => this._handleReturnPromise(res));
+        }).then((res) =>  this._handleReturnPromise(res))
     }
 
     setNewCard(data) {
@@ -37,13 +37,13 @@ export class Api {
 
     //likes
     setLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: "PUT",
             headers: this._headers,
         }).then((res) => this._handleReturnPromise(res));
     }
     deleteLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: "DELETE",
             headers: this._headers,
         }).then((res) => this._handleReturnPromise(res));
@@ -77,12 +77,15 @@ export class Api {
             }),
         }).then((res) => this._handleReturnPromise(res));
     }
+
 }
 
+const jwt = localStorage.getItem("jwt");
 const api = new Api({
-    baseUrl: 'api.mesto-express.ybon.nomoredomains.work',
-    headers: {
-        'Content-Type': 'application/json'
+    baseUrl: 'http://mesto-express.ybon.nomoredomains.work',
+    headers:  {
+        "content-type": "application/json",
+        'Authorization': `Bearer ${jwt}`,
     }
 });
 

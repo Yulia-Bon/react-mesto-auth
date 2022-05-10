@@ -1,4 +1,5 @@
-export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const BASE_URL = 'http://mesto-express.ybon.nomoredomains.work';
+
 export const register = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
@@ -32,20 +33,20 @@ export const authorize = (password, email) => {
             return Promise.reject(`Произошла ошибка: ${res.status} ${res.statusText} :(`);
         })
         .then((data) => {
-            if (data.token) {
-                localStorage.setItem('token', data.token);
+            if (data.jwt) {
+                localStorage.setItem('jwt', data.jwt);
             }
             return data;
         });
 };
 
-export const getContent = (token) => {
+export const getContent = (jwt) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${jwt}`,
         }
     })
         .then((res) => {

@@ -78,7 +78,7 @@ function App() {
 
     /* Обработка событий */
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
         if (isLiked) {
             api.deleteLike(card._id)
                 .then((newCard) => {
@@ -90,13 +90,12 @@ function App() {
         } else {
             api.setLike(card._id)
                 .then((newCard) => {
-                    setCards((prevCards) => prevCards.map((c) => c._id === card._id ? newCard : c));
+                   setCards((prevCards) => prevCards.map((c) => c._id === card._id ? newCard : c));
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-        }
-        ;
+        };
     }
 
     function handleUpdateUser(userInfo) {
@@ -189,7 +188,7 @@ function App() {
     function handleRegisterSubmit(password, email) {
         auth.register(password, email)
             .then((res) => {
-                if (res.data) {
+                if (res) {
                     handleInfoTooltipOpen(true);
                     history.push("/sign-in");
                 }
@@ -204,7 +203,7 @@ function App() {
         auth
             .authorize(password, email)
             .then((res) => {
-                if (res.token) {
+                if (res.jwt) {
                     handleLogin();
                     history.push("/");
                 }
@@ -216,13 +215,13 @@ function App() {
     }
 
     function handleTokenCheck() {
-        const token = localStorage.getItem("token");
-        if (localStorage.getItem("token")) {
+        const jwt = localStorage.getItem("jwt");
+        if (jwt) {
             auth
-                .getContent(token)
+                .getContent(jwt)
                 .then((res) => {
                     if (res) {
-                        setEmail(res.data.email);
+                        setEmail(res.email);
                         setLoggedIn(true);
                         history.push("/");
                     }
@@ -249,7 +248,7 @@ function App() {
     }}, []);
 
     function onSingOut() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt');
         setEmail('');
         setLoggedIn(false);
         history.push("/sign-in");
