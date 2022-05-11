@@ -231,21 +231,23 @@ function App() {
                 });
         }
     }
+
     React.useEffect(() => {
         handleTokenCheck();
     }, [loggedIn]);
 
     React.useEffect(() =>{
-        if(setLoggedIn){
-        Promise.all([api.getInitialCards(), api.getProfileInfo()])
-            .then((res) => {
-                setCards(res[0]);
-                setCurrentUser(res[1]);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }}, []);
+        if(loggedIn){
+            Promise.all([api.getInitialCards(), api.getProfileInfo()])
+                .then((res) => {
+                    setCards(res[0]);
+                    setCurrentUser(res[1]);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+    }}, [loggedIn]);
+
 
     function onSingOut() {
         localStorage.removeItem('jwt');
