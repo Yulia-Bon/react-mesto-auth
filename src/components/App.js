@@ -205,6 +205,7 @@ function App() {
             .then((res) => {
                 if (res.jwt) {
                     handleLogin();
+                    localStorage.setItem('jwt', res.jwt)
                     history.push("/");
                 }
             })
@@ -221,8 +222,8 @@ function App() {
                 .getContent(jwt)
                 .then((res) => {
                     if (res) {
-                        setEmail(res.email);
                         setLoggedIn(true);
+                        setEmail(res.email);
                         history.push("/");
                     }
                 })
@@ -232,21 +233,28 @@ function App() {
         }
     }
 
+    const getUserInfo = () => {
+        console.log('getUserInfoCallback')
+        Promise.all([api.getInitialCards(), api.getProfileInfo()])
+            .then(([cards, user]) => {
+                setCards(cards);
+                setCurrentUser(user);
+                setEmail(user.email)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     React.useEffect(() => {
         handleTokenCheck();
-    }, [loggedIn]);
+    }, []);
 
-    React.useEffect(() =>{
-        if(loggedIn){
-            Promise.all([api.getInitialCards(), api.getProfileInfo()])
-                .then((res) => {
-                    setCards(res[0]);
-                    setCurrentUser(res[1]);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-    }}, [loggedIn]);
+    React.useEffect(() => {
+        if (loggedIn) {
+            getUserInfo()
+        }
+    }, [loggedIn]);
 
 
     function onSingOut() {
