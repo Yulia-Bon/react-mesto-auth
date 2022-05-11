@@ -13,14 +13,20 @@ export class Api {
     //Cards
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
         }).then((res) =>  this._handleReturnPromise(res))
     }
 
     setNewCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 name: data.name,
                 link: data.link,
@@ -31,7 +37,10 @@ export class Api {
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
         }).then((res) => this._handleReturnPromise(res));
     }
 
@@ -39,27 +48,39 @@ export class Api {
     setLike(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: "PUT",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
         }).then((res) => this._handleReturnPromise(res));
     }
     deleteLike(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: "DELETE",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
         }).then((res) => this._handleReturnPromise(res));
     }
 
     //Profile
     getProfileInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
         }).then((res) => this._handleReturnPromise(res));
     }
 
     setProfileInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 name: data.name,
                 about: data.about,
@@ -71,7 +92,10 @@ export class Api {
     changeAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 avatar: data.avatar,
             }),
@@ -80,13 +104,9 @@ export class Api {
 
 }
 
-const jwt = localStorage.getItem("jwt");
+// const jwt = localStorage.getItem("jwt");
 const api = new Api({
     baseUrl: 'http://mesto-express.ybon.nomoredomains.work',
-    headers:  {
-        "content-type": "application/json",
-        'Authorization': `Bearer ${jwt}`,
-    }
 });
 
 export default api;

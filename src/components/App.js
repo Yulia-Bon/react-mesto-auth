@@ -205,6 +205,7 @@ function App() {
             .then((res) => {
                 if (res.jwt) {
                     handleLogin();
+                    localStorage.setItem('jwt', res.jwt)
                     history.push("/");
                 }
             })
@@ -220,9 +221,10 @@ function App() {
             auth
                 .getContent(jwt)
                 .then((res) => {
+                    console.log('handleTokenCheck = ', res)
                     if (res) {
-                        setEmail(res.email);
-                        setLoggedIn(true);
+                        setLoggedIn(true)
+                        setEmail(res.email)
                         history.push("/");
                     }
                 })
@@ -232,21 +234,34 @@ function App() {
         }
     }
 
+
+    const getUserInfo = () => {
+        console.log('getUserInfoCallback')
+        Promise.all([api.getInitialCards(), api.getProfileInfo()])
+          .then(([cards, user]) => {
+              console.log('resGetUserInfo cards =',cards)
+              console.log('resGetUserInfo user =', user)
+              setCards(cards);
+              setCurrentUser(user);
+              setEmail(user.email)
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+    }
+
     React.useEffect(() => {
         handleTokenCheck();
-    }, [loggedIn]);
+    }, []);
 
-    React.useEffect(() =>{
-        if(loggedIn){
-            Promise.all([api.getInitialCards(), api.getProfileInfo()])
-                .then((res) => {
-                    setCards(res[0]);
-                    setCurrentUser(res[1]);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-    }}, [loggedIn]);
+    React.useEffect(() => {
+        console.log('use Logged')
+        console.log('loggedIn = ', loggedIn)
+        if (loggedIn) {
+            console.log('in if')
+            getUserInfo()
+        }
+    }, [loggedIn]);
 
 
     function onSingOut() {
@@ -259,7 +274,6 @@ function App() {
     return (
 
         <CurrentUserContext.Provider value={currentUser}>
-
             <div className="pages">
                 <Header handleLogOut={onSingOut} email={email}/>
                 <Switch>
