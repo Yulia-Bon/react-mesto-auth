@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://mesto-express.ybon.nomoredomains.work';
+export const BASE_URL = 'https://mesto-express.ybon.nomoredomains.work';
 
 export const register = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {

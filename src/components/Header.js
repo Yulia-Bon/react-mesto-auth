@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route} from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import headerLogo from "../images/logo_w.svg";
 
 function Header({handleLogOut = null, email}) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card(props) {
 
@@ -30,7 +30,7 @@ function Card(props) {
                         onClick={handleDeleteClick}></button>
                 <div>
                     <button className={cardLikeButtonClassName} type="button" aria-label="лайк"
-                            onClick={handleLikeClick}></button>
+                            onClick={handleLikeClick}/>
                     <p className="photo-grid__like-numbers">{props.card.likes.length}</p>
                 </div>
             </div>
