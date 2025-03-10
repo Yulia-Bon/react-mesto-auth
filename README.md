@@ -1,5 +1,5 @@
 # Проект: Место
-## [Посмотреть проект можно по ссылке ](https://yulia-bon.github.io/mesto-react-auth)
+## [You can view the project at the link](https://yulia-bon.github.io/mesto-react/)
 ### Обзор
 Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
 В работе применены расширенные возможности HTML и CSS, JavaScript.
